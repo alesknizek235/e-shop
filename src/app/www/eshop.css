@@ -1,0 +1,13 @@
+main{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+#items{
+    grid-column: 1;
+    border: 1px solid black;
+}
+#cart{
+    grid-column: 2;
+    border: 1px solid black;
+}

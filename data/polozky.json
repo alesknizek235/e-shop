@@ -1,0 +1,13 @@
+{
+    "1":{
+        "nazev":"triko",
+        "cena":399,
+        "id":1
+    },
+    "2":{
+        "nazev":"kalhoty",
+        "cena":799,
+        "id":2
+    },
+    "next_id":3
+}

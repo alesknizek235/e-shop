@@ -4,13 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/eshop.css">
     <title>e-shop</title>
 </head>
 <body>
-    <header>
-        <div>
-            
-        </div>
-    </header>
+    <%- include('../layout/header') %> 
+    <main>
+        <article id="items">
+            <h1>items</h1>
+            <% for(let i in polozky){ %>
+                <div class="item" id="<%= polozky[i].id %>">
+                    <h3><%= polozky[i].nazev %></h3>
+                    <button id="<%= polozky[i].id %>" name="<%= polozky[i].nazev %>" onclick="pridat(this.id, this.name)"> add to the cart </button>
+                </div>
+            <% } %>
+        </article>
+        <article id="cart">
+            <h1>cart</h1>
+            <div id="cartitems">
+
+            </div>
+        </article>
+    </main>
+    <%- include('../layout/footer') %> 
+    <script>
+        var koupene = [];
+        function pridat(id, name){
+            var polozka = {name: name, id:id, pocet:1};
+            console.log(polozka);
+            var zapsano = false;
+            if(koupene.length != 0){
+                for(let i in koupene){
+                    if(koupene[i].name == polozka.name){    
+                        koupene[i].pocet += 1;
+                        zapsano = true;
+                    }
+                }
+                if(zapsano == false){
+                    koupene.push(polozka);
+                }
+            }else{
+                koupene.push(polozka);
+            }
+            console.log(koupene);
+            vypsatKoupene();
+        }
+        function vypsatKoupene(){
+            const cartitems = document.getElementById("cartitems");
+            if(koupene.length != 0){
+                document.getElementById("cartitems").innerHTML = "";
+                for(let i in koupene){
+                    var el = document.createElement("div");
+                    el.setAttribute("id", i);
+                    el.innerHTML = koupene[i].name + " " + koupene[i].pocet;
+                    cartitems.appendChild(el);
+                }
+            }
+        }
+
+    </script>
 </body>
 </html>

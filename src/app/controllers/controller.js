@@ -2,10 +2,6 @@ const path = require('path');
 
 const model = require(path.join(__dirname, '..', 'models', 'model'));
 
-exports.home = (request, response) => {
-    response.render('index/home');
-};
-
 exports.error = (request, response) => {
     response.render('index/error');
 };
@@ -13,3 +9,13 @@ exports.error = (request, response) => {
 exports.mainView = (request, response) => {
     response.render('main/mainView'); 
 }; 
+
+exports.eshop = (request, response) => {
+    let polozky = model.zobrazit();
+
+    response.render('main/e-shop',{
+        titulek: 'položky',
+        klienta: polozky,
+        polozky,
+    });
+};
